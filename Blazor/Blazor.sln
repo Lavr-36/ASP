@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Blazor\Blazor.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODOlist", "TODOlist\TODOlist.csproj", "{89FBE3A9-4CD9-40E2-9109-E6B950229C6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies", "Movies\Movies.csproj", "{6E8932D0-D6F7-418B-A1B1-6FE83A3AC9A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{759A1E15-A0C9-4EE2-8168-83391B9135E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{89FBE3A9-4CD9-40E2-9109-E6B950229C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89FBE3A9-4CD9-40E2-9109-E6B950229C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89FBE3A9-4CD9-40E2-9109-E6B950229C6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E8932D0-D6F7-418B-A1B1-6FE83A3AC9A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E8932D0-D6F7-418B-A1B1-6FE83A3AC9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E8932D0-D6F7-418B-A1B1-6FE83A3AC9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E8932D0-D6F7-418B-A1B1-6FE83A3AC9A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759A1E15-A0C9-4EE2-8168-83391B9135E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759A1E15-A0C9-4EE2-8168-83391B9135E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759A1E15-A0C9-4EE2-8168-83391B9135E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759A1E15-A0C9-4EE2-8168-83391B9135E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,12 @@
 ﻿@page "/TaskList"
 @rendermode InteractiveServer
 
-<h2>TaskList</h2>
+<h1>TaskList</h1>
+<div class="statistics">
+	<h3>Выполнено: @list.Where(t => t.DONE == true).ToList().Count </h3>
+	<h3>Осталось: @list.Where(t => t.DONE == false).ToList().Count </h3>
+	<h3>Общее количество задач: @list.Count</h3>
+</div>
 
 <input type="text" placeholder="Новая задача" @bind="description" />
 <button @onclick="AddTask">Добавить</button>
@@ -9,20 +14,37 @@
 <ul>
 	@foreach (TODOlist.Task task in list)
 	{
-		<li>@task.Description</li>
+		<li>
+			<input type="checkbox" @bind="@task.DONE" id="@task.Description" />
+			<label for="@task.Description">
+				<span>@task.Description</span>
+				<span>@task.AssignTime</span>
+			</label>
+		</li>
 	}
 </ul>
 
 @code
 {
-	List<TODOlist.Task> list = new List<TODOlist.Task>();
+	List<TODOlist.Task> list =
+	[
+		new TODOlist.Task{ Description = "Покормить кота" },
+		new TODOlist.Task{ Description = "Пополить цветы", DONE = true },
+		new TODOlist.Task{ Description = "Сходить в магазин", DONE = true },
+	];
+	// List<TODOlist.Task> list = new List<TODOlist.Task>();
 
 	string description = "";    //RAII
 	void AddTask()
 	{
 		if (!string.IsNullOrEmpty(description) && !string.IsNullOrWhiteSpace(description))
 		{
-			TODOlist.Task task = new TODOlist.Task { Description = description, DONE = false };
+			TODOlist.Task task = new TODOlist.Task
+			{
+				Description = description,
+				DONE = false,
+				AssignTime = DateTime.Now 
+			};
 			if (!list.Contains(task))
 			{
 				list.Add(task);
