@@ -18,8 +18,8 @@ namespace Academy.Models
 		[ForeignKey(nameof(Direction))]
 		public int direction { get; set; }
 
-		[Column("weekdays", TypeName = "TINYINT")]
-		public int? learning_days { get; set; } = 0;
+        [Column("weekdays", TypeName = "TINYINT")]
+        public int? learning_days { get; set; } = 0;
 
 		public TimeOnly? start_time { get; set; }
 
@@ -27,6 +27,6 @@ namespace Academy.Models
 
 		//			Navigation properties:
 		public Direction Direction { get; set; } = default!;
-		ICollection<Student> Students { get; set; } = default!;
+		public ICollection<Student> Students { get; set; } = default!;
 	}
 }

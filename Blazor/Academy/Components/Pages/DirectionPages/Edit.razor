@@ -48,7 +48,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        Direction ??= await context.Directions.FirstOrDefaultAsync(m => m.direction_id == direction_id);
+        Direction ??= await context.directions.FirstOrDefaultAsync(m => m.direction_id == direction_id);
 
         if (Direction is null)
         {
@@ -85,6 +85,6 @@ else
     private bool DirectionExists(int direction_id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.Directions.Any(e => e.direction_id == direction_id);
+        return context.directions.Any(e => e.direction_id == direction_id);
     }
 }

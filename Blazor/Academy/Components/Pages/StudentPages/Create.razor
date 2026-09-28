@@ -24,7 +24,7 @@
 						<label for="last_name" class="form-label">last_name:</label>
 						<InputText id="last_name" @bind-Value="Student.last_name" class="form-control" aria-required="true" />
 						<ValidationMessage For="() => Student.last_name" class="text-danger" />
-					</div>
+				</div>
 					<div class="mb-3">
 						<span class="text-danger">*</span>
 						<label for="first_name" class="form-label">first_name:</label>
@@ -60,7 +60,7 @@
 							<option selected disabled>--- Выберите группу ---</option>
 							@using (Academy.Data.AcademyContext context = DbFactory.CreateDbContext())
 							{
-								@foreach (Group group in context.Groups)
+								@foreach (Group group in context.groups)
 								{
 									<option value="@group.group_id">@group.group_name</option>
 								}
@@ -112,7 +112,7 @@
 	private async Task AddStudent()
 	{
 		using var context = DbFactory.CreateDbContext();
-		context.Students.Add(Student);
+		context.students.Add(Student);
 		await context.SaveChangesAsync();
 		NavigationManager.NavigateTo("/students");
 	}

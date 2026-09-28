@@ -43,10 +43,10 @@
     {
         using var context = DbFactory.CreateDbContext();
         direction = await context
-						.Directions
+						.directions
 						.Include(d => d.Groups)
 						.FirstOrDefaultAsync(m => m.direction_id == direction_id);
-        // direction = await context.Directions.FirstOrDefaultAsync(m => m.direction_id == direction_id);
+        // direction = await context.directions.FirstOrDefaultAsync(m => m.direction_id == direction_id);
 
         if (direction is null)
         {

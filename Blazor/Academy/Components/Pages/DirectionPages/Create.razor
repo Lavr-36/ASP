@@ -38,7 +38,7 @@
     private async Task AddDirection()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Directions.Add(Direction);
+        context.directions.Add(Direction);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/directions");
     }

@@ -2,20 +2,37 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Academy.Data;
+using Microsoft.Extensions.Configuration;
+using Npgsql;
+
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContextFactory<AcademyContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AcademyContext") ?? throw new InvalidOperationException("Connection string 'AcademyContext' not found.")));
+
+//var connectionString = builder.Configuration.GetConnectionString("AcademyContext") ?? throw new InvalidOperationException("Connection string 'AcademyContext' not found.");
+// builder.Services.AddDbContextFactory<AcademyContext>(options =>
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("AcademyContext") ?? throw new InvalidOperationException("Connection string 'AcademyContext' not found.")));
 
 builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+// 
+var connectionStringContext = "AcademyContext";
+var connectionString = builder.Configuration.GetNpgsqlConnectionString(connectionStringContext);
+
+builder.Services.AddDbContextFactory<AcademyContext>(options =>
+	options.UseNpgsql(connectionString ?? throw new InvalidOperationException($"Connection string '{connectionStringContext}' not found.")));
+
+#if DEBUG
+Console.WriteLine($"[DEBUG] Connection string: {connectionString}");
+#endif
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
 	.AddInteractiveServerComponents();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -25,6 +42,8 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
     app.UseMigrationsEndPoint();
 }
+
+app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 
 app.UseHttpsRedirection();
 

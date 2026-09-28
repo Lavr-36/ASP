@@ -50,7 +50,7 @@
 	{
 		context = DbFactory.CreateDbContext();
 		students = context
-					.Students
+					.students
 					.Include(s => s.Group)
 					.ThenInclude(g => g.Direction);
 	}

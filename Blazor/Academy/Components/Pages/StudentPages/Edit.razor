@@ -64,7 +64,7 @@ else
 								<option selected disabled>--- Выберите группу ---</option>
 								@using (Academy.Data.AcademyContext context = DbFactory.CreateDbContext())
 								{
-									@foreach (Group group in context.Groups)
+									@foreach (Group group in context.groups)
 									{
 										<option value="@group.group_id">@group.group_name</option>
 									}
@@ -123,7 +123,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        Student ??= await context.Students.FirstOrDefaultAsync(m => m.stud_id == stud_id);
+        Student ??= await context.students.FirstOrDefaultAsync(m => m.stud_id == stud_id);
 
         if (Student is null)
         {
@@ -160,6 +160,6 @@ else
     private bool StudentExists(int stud_id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.Students.Any(e => e.stud_id == stud_id);
+        return context.students.Any(e => e.stud_id == stud_id);
     }
 }

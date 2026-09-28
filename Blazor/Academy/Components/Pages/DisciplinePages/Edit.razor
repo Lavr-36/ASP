@@ -54,7 +54,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        Discipline ??= await context.Disciplines.FirstOrDefaultAsync(m => m.discipline_id == discipline_id);
+        Discipline ??= await context.disciplines.FirstOrDefaultAsync(m => m.discipline_id == discipline_id);
 
         if (Discipline is null)
         {
@@ -91,6 +91,6 @@ else
     private bool DisciplineExists(int discipline_id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.Disciplines.Any(e => e.discipline_id == discipline_id);
+        return context.disciplines.Any(e => e.discipline_id == discipline_id);
     }
 }

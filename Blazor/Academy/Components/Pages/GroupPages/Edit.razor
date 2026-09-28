@@ -1,8 +1,7 @@
 ﻿@page "/groups/edit"
-@rendermode InteractiveServer
-
 @using Microsoft.EntityFrameworkCore
 @using Academy.Models
+@rendermode InteractiveServer
 @inject IDbContextFactory<Academy.Data.AcademyContext> DbFactory
 @inject NavigationManager NavigationManager
 
@@ -39,7 +38,7 @@ else
 					<InputSelect id="direction" @bind-Value="Group.direction" class="form-control">
 						@using (Academy.Data.AcademyContext context = DbFactory.CreateDbContext())
 						{
-							@foreach (Direction d in context.Directions)
+							@foreach (Direction d in context.directions)
 							{
 								<option value="@d.direction_id">@d.direction_name</option>
 							}
@@ -87,7 +86,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        Group ??= await context.Groups.FirstOrDefaultAsync(m => m.group_id == group_id);
+        Group ??= await context.groups.FirstOrDefaultAsync(m => m.group_id == group_id);
 
         if (Group is null)
         {
@@ -124,6 +123,6 @@ else
     private bool GroupExists(int group_id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.Groups.Any(e => e.group_id == group_id);
+        return context.groups.Any(e => e.group_id == group_id);
     }
 }

@@ -37,7 +37,7 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        direction = await context.Directions.FirstOrDefaultAsync(m => m.direction_id == direction_id);
+        direction = await context.directions.FirstOrDefaultAsync(m => m.direction_id == direction_id);
 
         if (direction is null)
         {
@@ -48,7 +48,7 @@
     private async Task DeleteDirection()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Directions.Remove(direction!);
+        context.directions.Remove(direction!);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/directions");
     }

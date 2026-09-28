@@ -44,7 +44,7 @@
     private async Task AddDiscipline()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Disciplines.Add(Discipline);
+        context.disciplines.Add(Discipline);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/disciplines");
     }

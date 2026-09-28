@@ -1,16 +1,15 @@
 ﻿@page "/groups/create"
-@rendermode InteractiveServer
-
 @using Microsoft.EntityFrameworkCore
 @using Academy.Models
+@rendermode InteractiveServer
 @inject IDbContextFactory<Academy.Data.AcademyContext> DbFactory
 @inject NavigationManager NavigationManager
 
 <PageTitle>Create</PageTitle>
 
-<h1>Create</h1>
+<h1>Добавить</h1>
 
-<h2>Group</h2>
+<h2>Группа</h2>
 <hr />
 <div class="row">
 	<div class="col-md-4">
@@ -32,7 +31,7 @@
 					<option disabled selected> --- Выберите направлении обучения --- </option>
 					@using (Academy.Data.AcademyContext context = DbFactory.CreateDbContext())
 					{
-						@foreach (Direction d in context.Directions)
+						@foreach (Direction d in context.directions)
 						{
 							<option value="@d.direction_id">@d.direction_name</option>
 						}
@@ -41,12 +40,12 @@
 
                 <ValidationMessage For="() => Group.direction" class="text-danger" /> 
             </div>        
-           @*  <div class="mb-3">
+            @*    <div class="mb-3">
                 <label for="learning_days" class="form-label">learning_days:</label> 
                 <InputNumber id="learning_days" @bind-Value="Group.learning_days" class="form-control" /> 
                 <ValidationMessage For="() => Group.learning_days" class="text-danger" /> 
-            </div>    *@
-			<Weekdays Group="@Group" />
+            </div>  *@   
+            <Weekdays Group="@Group"/>
             <div class="mb-3">
                 <label for="start_time" class="form-label">start_time:</label> 
                 <InputDate Type="InputDateType.Time" id="start_time" @bind-Value="Group.start_time" class="form-control" /> 
@@ -54,7 +53,7 @@
             </div>        
             <div class="mb-3">
                 <label for="start_date" class="form-label">start_date:</label> 
-                <InputDate id="start_date" @bind-Value="Group.start_date" class="form-control" /> 
+                <InputDate Type="InputDateType.Date" id="start_date" @bind-Value="Group.start_date" class="form-control" /> 
                 <ValidationMessage For="() => Group.start_date" class="text-danger" /> 
             </div>        
             <button type="submit" class="btn btn-primary">Create</button>
@@ -74,7 +73,7 @@
     private async Task AddGroup()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Groups.Add(Group);
+        context.groups.Add(Group);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/groups");
     }

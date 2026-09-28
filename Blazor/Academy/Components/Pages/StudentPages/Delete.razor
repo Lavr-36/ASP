@@ -65,7 +65,7 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        student = await context.Students.FirstOrDefaultAsync(m => m.stud_id == stud_id);
+        student = await context.students.FirstOrDefaultAsync(m => m.stud_id == stud_id);
 
         if (student is null)
         {
@@ -76,7 +76,7 @@
     private async Task DeleteStudent()
     {
         using var context = DbFactory.CreateDbContext();
-        context.Students.Remove(student!);
+        context.students.Remove(student!);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/students");
     }
