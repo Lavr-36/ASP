@@ -1,0 +1,18 @@
+﻿.details
+{
+	display:flex;
+	justify-content:space-between;
+}
+.details > div
+{
+	width:38%;
+}
+.photo-container img
+{
+	width:100%;
+}
+.photo-container div
+{
+	min-height:384px;
+	border:solid 1px;
+}

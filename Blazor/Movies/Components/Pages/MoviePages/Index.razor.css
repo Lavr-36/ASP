@@ -1,0 +1,27 @@
+﻿.controls
+{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+	/*.controls *
+	{
+		height:38px;
+	}*/
+input[type=search]
+{
+	text-align:center;
+}
+
+::deep .movie-title
+{
+	width:50%;
+}
+::deep .release-date
+{
+	width:20%;
+}
+::deep .genre
+{
+	width:30%;
+}
