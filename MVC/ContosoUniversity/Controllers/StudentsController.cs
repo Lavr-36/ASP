@@ -47,7 +47,7 @@ namespace ContosoUniversity.Controllers
 				default:			students = students.OrderBy(s => s.LastName);					break;
 			}
 
-			int pageSize = 5;
+			int pageSize = 2;
 			return View
 			(
 				await PaginatedList<Student>.CreateAsync
