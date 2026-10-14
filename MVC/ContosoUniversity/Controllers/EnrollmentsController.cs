@@ -20,10 +20,22 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Enrollments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber)
         {
-            var contosoUniversityContext = _context.Enrollments.Include(e => e.Course).Include(e => e.Student);
-            return View(await contosoUniversityContext.ToListAsync());
+            var contosoUniversityContext = _context.Enrollments
+													.Include(e => e.Course)
+													.Include(e => e.Student);
+			int pageSize = 3;
+            return View
+				(
+					await PaginatedList<Enrollment>.CreateAsync
+					(
+						contosoUniversityContext.AsNoTracking(),
+						pageNumber ?? 1,
+						pageSize
+					)
+				);
+            //return View(await contosoUniversityContext.ToListAsync());
         }
 
         // GET: Enrollments/Details/5
